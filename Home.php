@@ -54,30 +54,29 @@
     <div class="container">
         <h4>Our Customers LOVE Our Services</h4>
         <div class="owl-carousel">
-            <div class="the-buzz-client">
-                <h2 class="client-feedback">“I feel like I have more energy throughout the day – before and after my
-                    workouts!”</h2>
+            <!-- <div class="the-buzz-client">
+                <h2 class="client-feedback">“I feel like I have more energy throughout the day – before and after my workouts!”</h2>
                 <h4 class="client-name">Sarah L.</h4>
                 <h6><span>Age 19</span> | Distance Swimmer</h6>
-            </div>
-            <div class="the-buzz-client">
-                <h2 class="client-feedback">“I feel like I have more energy throughout the day – before and after my
-                    workouts!”</h2>
-                <h4 class="client-name">Sarah L.</h4>
-                <h6><span>Age 19</span> | Distance Swimmer</h6>
-            </div>
-            <div class="the-buzz-client">
-                <h2 class="client-feedback">“I feel like I have more energy throughout the day – before and after my
-                    workouts!”</h2>
-                <h4 class="client-name">Sarah L.</h4>
-                <h6><span>Age 19</span> | Distance Swimmer</h6>
-            </div>
-            <div class="the-buzz-client">
-                <h2 class="client-feedback">“I feel like I have more energy throughout the day – before and after my
-                    workouts!”</h2>
-                <h4 class="client-name">Sarah L.</h4>
-                <h6><span>Age 19</span> | Distance Swimmer</h6>
-            </div>
+            </div> -->
+            <?php
+
+            // Check rows exists.
+            if( have_rows('customer_review_slider') ):
+
+                // Loop through rows.
+                while( have_rows('customer_review_slider') ) : the_row();?>
+
+                    <div class="the-buzz-client">
+                        <h2 class="client-feedback"><?php the_sub_field("customer_feedback"); ?></h2>
+                        <h4 class="client-name"><?php the_sub_field("customer_name"); ?></h4>
+                        <h6><span>Age <?php the_sub_field("customer_age"); ?></span> | <?php the_sub_field("customer_interest"); ?></h6>
+                    </div>
+
+                <?php // End loop.
+                endwhile;
+            endif;?>
+            
         </div>
     </div>
 </section>
@@ -86,41 +85,32 @@
     <div class="container">
         <h1>News & Blog</h1>
         <div class="blog-flex">
-            <div class="blog-col">
-                <div class="blog-img" style="background-image: url('<?php echo get_template_directory_uri();?>/assets/images/blog-img1.png');">
-                    <span class="blog-date">Feb 12, 2020</span>
-                </div>
-                <div class="blog-text">
-                    <h5>5 Steps to Deploy Analytics 5x
-                        Faster</h5>
-                    <p>Aenean sed nibh a magna posuere tempor. Nunc faucibus pellentesque nunc in aliquet. Donec
-                        congue, nunc vel tempor
-                        congue, enim sapien lobortis ipsum, in volutpat sem ex in ligula.</p>
-                    <a href="#">Read more <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
-                </div>
-            </div>
-            <div class="blog-col">
-                <div class="blog-img" style="background-image: url('<?php echo get_template_directory_uri();?>/assets/images/blog-img2.png');">
-                    <span class="blog-date">Feb 12, 2020</span>
-                </div>
-                <div class="blog-text">
-                    <h5>How to Connect andPrepare Data
-                        for Search</h5>
-                    <p>Nunc purus est, consequat condimentum faucibus sed, iaculis sit amet massa.</p>
-                    <a href="#">Read more <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
-                </div>
-            </div>
-            <div class="blog-col">
-                <div class="blog-img" style="background-image: url('<?php echo get_template_directory_uri();?>/assets/images/blog-img3.png');">
-                    <span class="blog-date">Feb 12, 2020</span>
-                </div>
-                <div class="blog-text">
-                    <h5>ThoughtSpot Embedded Analytics</h5>
-                    <p>Fusce ac condimentum turpis. Ut consequat lacinia augue, vitae aliquam sapien ullamcorper at.
-                    </p>
-                    <a href="#">Read more <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
-                </div>
-            </div>
+
+            
+            
+            <?php $the_query = new WP_Query(array(
+                'post_type' => 'post',
+                'posts_per_page' => 3,
+            ));
+            ?>
+
+            <?php if ( $the_query->have_posts() ) : 
+                while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
+                    <div class="blog-col">
+                        <div class="blog-img" style="background-image: url('<?php echo get_template_directory_uri();?>/assets/images/blog-img1.png');">
+                            <span class="blog-date">Feb 12, 2020</span>
+                        </div>
+                        <div class="blog-text">
+                            <h5>5 Steps to Deploy Analytics 5x
+                                Faster</h5>
+                            <p>Aenean sed nibh a magna posuere tempor. Nunc faucibus pellentesque nunc in aliquet. Donec
+                                congue, nunc vel tempor
+                                congue, enim sapien lobortis ipsum, in volutpat sem ex in ligula.</p>
+                            <a href="#">Read more <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                <?php endwhile; ?>
+            <?php endif; ?>
         </div>
     </div>
 </section>
@@ -137,6 +127,9 @@
                     <div class="subscribe-form-input">
                         <input type="email" placeholder="Email Address">
                         <input type="submit" value="Subscribe">
+                        
+                        <!-- <?php echo do_shortcode('[contact-form-7 id="49" title="Subscribe Form"]'); ?> -->
+
                     </div>
                 </form>
             </div>

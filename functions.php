@@ -49,3 +49,8 @@ function my_acf_op_init() {
         ));
     }
 } 
+
+
+/*for set featured image*/
+
+add_theme_support( 'post-thumbnails' );

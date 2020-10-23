@@ -28,15 +28,6 @@
                 <a href="<?php echo get_home_url(); ?>"><img src="<?php echo $image[0]; ?>" alt=""></a>
             </div>
             <div class="cus-navigation">
-                <!-- <nav>
-                    <ul>
-                        <li><a href="#about-section">About</a></li>
-                        <li><a href="#services-section">Services</a></li>
-                        <li><a href="#the-buzz">The Buzz</a></li>
-                        <li><a href="#blog-section">The Blog</a></li>
-                        <li><a href="#contact-section">Contact</a></li>
-                    </ul>
-                </nav> -->
                 <nav>
                     <?php 
                         $args =array(
@@ -46,12 +37,22 @@
                     <?php wp_nav_menu($args); ?>
                 </nav>
                 <div class="h-social-icon">
-                    <ul>
-                        <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                        <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
-                        <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                    </ul>
+                <ul>
+                    <?php
+
+                        // Check rows exists.
+                        if( have_rows('social_link' , 'option') ):
+
+                            // Loop through rows.
+                            while( have_rows('social_link' , 'option') ) : the_row(); ?>
+                                <li><a href="<?php the_sub_field("social_icon_link" ,"option"); ?>"><?php the_sub_field("social_icon_code" ,"option"); ?></a></li>
+                            <?php
+                            // End loop.
+                            endwhile;
+
+                        endif;
+                    ?>
+                </ul>
                 </div>
             </div>
             <div class="menu-bar">

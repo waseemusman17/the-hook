@@ -5,18 +5,25 @@
                     <div class="col-md-6">
                         <div class="footer-logo-col">
                             <div class="footer-logo">
-                                <a href="#"><img src="<?php echo get_template_directory_uri();?>/assets/images/footer-logo.png" alt="footer-logo"></a>
+                                <a href="#"><img src="<?php the_field("footer_logo" , 'option'); ?>" alt="footer-logo"></a>
                             </div>
-                            <p>Just about everything your business could need. From consulting to brand management,
-                                there is
-                                always a way to refine
-                                messaging, visually capture your audience and better engage with your audience. v</p>
+                            <p><?php the_field("footer_description", 'option'); ?></p>
                             <div class="h-social-icon">
                                 <ul>
-                                    <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                                    <?php
+
+                                        // Check rows exists.
+                                        if( have_rows('social_link' , 'option') ):
+
+                                            // Loop through rows.
+                                            while( have_rows('social_link' , 'option') ) : the_row(); ?>
+                                                <li><a href="<?php the_sub_field("social_icon_link" ,"option"); ?>"><?php the_sub_field("social_icon_code" ,"option"); ?></a></li>
+                                            <?php
+                                            // End loop.
+                                            endwhile;
+
+                                        endif;
+                                    ?>
                                 </ul>
                             </div>
                         </div>
@@ -26,13 +33,11 @@
                             <h2>Feel Free To Get In Touch With Us Via Email Or Phone</h2>
                             <div class="contact-info-links">
                                 <ul>
-                                    <li><a href="#">hello@thehookPR.com</a></li>
-                                    <li><a href="#">619-888-5520</a></li>
+                                    <li><a href="mailto:<?php the_field("footer_contact_email" , 'option'); ?>"><?php the_field("footer_contact_email", 'option'); ?></a></li>
+                                    <li><a href="tel:<?php the_field("footer_contact_phone" , 'option'); ?>"><?php the_field("footer_contact_phone" , 'option'); ?></a></li>
                                 </ul>
                                 <address>
-                                    Based in<br>
-                                    Santa Cruz, CA,<br>
-                                    serving businsses nationwide.
+                                <?php the_field("footer_contact_address" , 'option'); ?>
                                 </address>
                                 <div class="contact-info-form">
                                     <label>Subscribe to Our Newsletter</label>
@@ -50,7 +55,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>Copywrite 2020 the hook creative + pr</p>
+            <p><?php the_field("copyright_text" , 'option'); ?></p>
         </div>
     </footer>
     <!-- Scripts -->
