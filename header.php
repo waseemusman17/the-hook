@@ -7,9 +7,7 @@
     <link rel="icon" type="" href="">
     <link rel="shortcut icon" type="image/png" href="assets/images/fevicon.png" />
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri();?>/assets/css/owl.carousel.min.css">
     <link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri();?>/assets/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri();?>/assets/css/all.css">
@@ -30,7 +28,7 @@
                 <a href="<?php echo get_home_url(); ?>"><img src="<?php echo $image[0]; ?>" alt=""></a>
             </div>
             <div class="cus-navigation">
-                <nav>
+                <!-- <nav>
                     <ul>
                         <li><a href="#about-section">About</a></li>
                         <li><a href="#services-section">Services</a></li>
@@ -38,6 +36,14 @@
                         <li><a href="#blog-section">The Blog</a></li>
                         <li><a href="#contact-section">Contact</a></li>
                     </ul>
+                </nav> -->
+                <nav>
+                    <?php 
+                        $args =array(
+                            'header-menu' => 'Header Menu'
+                        );
+                    ?>
+                    <?php wp_nav_menu($args); ?>
                 </nav>
                 <div class="h-social-icon">
                     <ul>

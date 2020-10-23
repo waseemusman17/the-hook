@@ -5,7 +5,7 @@
                     <div class="col-md-6">
                         <div class="footer-logo-col">
                             <div class="footer-logo">
-                                <a href="#"><img src="assets/images/footer-logo.png" alt="footer-logo"></a>
+                                <a href="#"><img src="<?php echo get_template_directory_uri();?>/assets/images/footer-logo.png" alt="footer-logo"></a>
                             </div>
                             <p>Just about everything your business could need. From consulting to brand management,
                                 there is
